@@ -50,6 +50,10 @@ async def store_user(request: Request):
 async def serve_homepage():
     return FileResponse("index.html")
 
+@app.get("/laugh")
+async def serve_funnypage():
+    return FileResponse("/public/templates/laugh.html")
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=port, log_level="info")
