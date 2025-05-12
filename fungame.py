@@ -52,7 +52,7 @@ async def serve_homepage():
 
 @app.get("/laugh")
 async def serve_funnypage():
-    return FileResponse("/public/templates/laugh.html")
+    return FileResponse("public/templates/laugh.html")
 
 
 if __name__ == "__main__":
