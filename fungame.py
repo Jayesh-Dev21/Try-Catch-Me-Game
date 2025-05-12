@@ -3,6 +3,7 @@ import re
 import json
 import base64
 import uvicorn
+import requests
 from dotenv import load_dotenv
 from datetime import datetime
 from fastapi import FastAPI, Request
@@ -27,7 +28,7 @@ app.add_middleware(
 
 port = int(os.environ.get('PORT', 8080))
 
-app.mount("/public/static", StaticFiles(directory="public/static"), name="static")
+# app.mount("/public/static", StaticFiles(directory="public/static"), name="static")
 
 @app.get("/get-jokes-from-user")
 async def get_some_jokes(authorization: str = Header(None)):
@@ -35,17 +36,17 @@ async def get_some_jokes(authorization: str = Header(None)):
         raise HTTPException(status_code=401, detail="Unauthorized")
     return FileResponse("game_time_jokes.json")
     
-@app.get("/crack_some_jokes", methods=["POST"])
-def store_user():
-    data = request.get_json()
+@app.post("/crack_some_jokes")
+async def store_user(request: Request):
+    data = await request.json()  # <-- await here, because it's an async method
 
     # Store to file
     with open("game_time_jokes.json", "a") as f:
         f.write(json.dumps(data) + "\n")
 
-    return jsonify({"status": "success", "received": data}), 200
+    return JSONResponse({"status": "success", "received": data})
 
-    
+
 @app.get("/")
 async def serve_homepage():
     return FileResponse("index.html")
