@@ -27,7 +27,7 @@ app.add_middleware(
 
 port = int(os.environ.get('PORT', 8080))
 
-# app.mount("/public/static", StaticFiles(directory="public/static"), name="static")
+app.mount("/public/static", StaticFiles(directory="public/static"), name="static")
 
 @app.get("/get-jokes-from-user")
 async def get_some_jokes(authorization: str = Header(None)):
