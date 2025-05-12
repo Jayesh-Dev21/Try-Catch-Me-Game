@@ -1,4 +1,4 @@
-# Try-Catch-Me-Game
+# The Try Catch Me Game
 Just for fun, no pun intended 😂😂
 
 ```
