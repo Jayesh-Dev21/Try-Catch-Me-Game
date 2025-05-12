@@ -3,7 +3,6 @@ import re
 import json
 import base64
 import uvicorn
-import requests
 from dotenv import load_dotenv
 from datetime import datetime
 from fastapi import FastAPI, Request
