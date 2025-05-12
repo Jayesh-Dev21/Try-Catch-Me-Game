@@ -1,4 +1,4 @@
 function goToLaugh() {
-    window.location.href = "/public/templates/laugh.html";
+    window.location.href = "/laugh";
   }
   
